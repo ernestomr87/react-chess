@@ -6,8 +6,24 @@
     "chess.js": "^0.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
-    "styled-components": "^3.2.3"
+    "styled-components": "^3.2.3",
+    "antd": "^3.1.6",
+    "antd-iconfont": "^3.0.3",
+    "axios": "^0.17.1",
+    "history": "4.6.3",
+    "lodash": "^4.17.4",
+    "moment": "^2.20.1",
+    "react-helmet": "^5.2.0",
+    "react-loadable": "^5.3.1",
+    "react-router-dom": "4.1.1",
+    "react-router-redux": "5.0.0-alpha.6",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-immutablejs": "^0.0.8",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,14 +37,10 @@
     "eslint": "4.19.1",
     "eslint-config-last": "0.0.5",
     "eslint-config-prettier": "2.9.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "2.6.0",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-react": "^7.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "prettier": "1.11.1"
+    "prettier": "1.11.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "react-test-renderer": "^16.2.0"
   }
 }

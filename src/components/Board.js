@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Square from "./Square";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Square from './Square';
 
 const Div = styled.div`
   width: 500px;
   height: 500px;
+  margin: 0 auto;
 `;
 
 class Board extends Component {
@@ -28,7 +29,7 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-  chess: PropTypes.object.isRequired
+  chess: PropTypes.object.isRequired,
 };
 
 export default Board;

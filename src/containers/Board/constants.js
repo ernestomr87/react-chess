@@ -1,0 +1,2 @@
+export const START_GAME_REQUEST = 'app/Board/START_GAME_REQUEST';
+export const START_GAME_RESPONSE = 'app/Board/START_GAME_RESPONSE';

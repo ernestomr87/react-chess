@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Piece = styled.div`
-  font-family: Chess;
-  width: 12.5%;
+  width: 60px;
+  height: 60px;
   float: left;
   margin: 0;
   p {
+    font-family: Chess;
     font-size: 60px;
     padding: 0;
     margin: 0 0 0 0;
