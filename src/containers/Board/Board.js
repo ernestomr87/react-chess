@@ -109,7 +109,7 @@ class App extends Component {
           okText="Black"
           cancelText="White"
         >
-          <Button
+          {/* <Button
             ghost
             className={mode === 'PlayerVsCpu' ? 'active' : null}
             style={{
@@ -121,7 +121,7 @@ class App extends Component {
             onClick={() => this.setState({ visible: true })}
           >
             Player vs Computer
-          </Button>
+          </Button> */}
         </PopconfirmWrapper>
       </div>
     );
@@ -159,7 +159,7 @@ class App extends Component {
   };
 
   render() {
-    const { board: { chess, mode } } = this.props;
+    const { board: { chess } } = this.props;
 
     let count = 0;
     let white = [];
@@ -207,6 +207,7 @@ class App extends Component {
                 {this.renderButtons()}
                 {this.renderOptions()}
                 {this.renderTurnTag()}
+                <br />
                 <Board chess={chess} />
               </Card>
             ) : null}
