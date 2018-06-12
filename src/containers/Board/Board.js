@@ -3,7 +3,18 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Row, Col, Button, Card, Table, Icon, Tag, message } from 'antd';
+import {
+  Row,
+  Col,
+  Button,
+  Card,
+  Table,
+  Icon,
+  Tag,
+  message,
+  Switch,
+  Popconfirm,
+} from 'antd';
 import { createStructuredSelector } from 'reselect';
 import withReducer from '../../utils/withReducer';
 import withSaga from '../../utils/withSaga';
@@ -18,6 +29,7 @@ const CardWrapper = styled(Card)`
     padding: 0px;
   }
 `;
+const PopconfirmWrapper = styled(Popconfirm)``;
 const TableWrapper = styled(Table)`
   .ant-table-small
     > .ant-table-content
@@ -33,6 +45,10 @@ const TableWrapper = styled(Table)`
 `;
 
 class App extends Component {
+  state = {
+    whitePiece: true,
+    visible: false,
+  };
   componentDidMount = () => {
     this.handleStart();
   };
@@ -58,13 +74,92 @@ class App extends Component {
     this.props.startGameReq();
   };
 
+  selectBlack = () => {};
+  selectWhite = () => {};
+
   startGameCpuVSCpu = () => {
     const { board: { chess }, startGameCpuVSCpuReq } = this.props;
     startGameCpuVSCpuReq({ chess: chess });
   };
 
+  startGamePlayerVsCpu = () => {
+    const { board: { chess }, startGameCpuVSCpuReq } = this.props;
+    startGameCpuVSCpuReq({ chess: chess });
+  };
+
+  renderButtons = () => {
+    const { board: { mode } } = this.props;
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <Button
+          ghost
+          className={mode === 'CpuVsCpu' ? 'active' : null}
+          size="small"
+          disabled={mode === 'CpuVsCpu'}
+          type="primary"
+          onClick={this.startGameCpuVSCpu}
+        >
+          Computer vs Computer
+        </Button>
+        <PopconfirmWrapper
+          title="Select your pieces"
+          visible={this.state.visible}
+          onConfirm={this.selectBlack}
+          onCancel={this.selectWhite}
+          okText="Black"
+          cancelText="White"
+        >
+          <Button
+            ghost
+            className={mode === 'PlayerVsCpu' ? 'active' : null}
+            style={{
+              margin: '0 0 5px 5px',
+            }}
+            size="small"
+            disabled={mode === 'PlayerVsCpu'}
+            type="primary"
+            onClick={() => this.setState({ visible: true })}
+          >
+            Player vs Computer
+          </Button>
+        </PopconfirmWrapper>
+      </div>
+    );
+  };
+  renderTurnTag = () => {
+    const { board: { chess, loading, mode } } = this.props;
+    if (mode) {
+      return chess.turn() === 'b' ? (
+        <Tag className="chess-right" color="#595959">
+          Black Turn &nbsp;
+          {loading ? <Icon style={{ fontSize: 12 }} type="loading" /> : null}
+        </Tag>
+      ) : (
+        <Tag className="chess-right" color="blue">
+          White Turn &nbsp;
+          {loading ? <Icon style={{ fontSize: 12 }} type="loading" /> : null}
+        </Tag>
+      );
+    }
+  };
+  renderOptions = () => {
+    const { board: { mode } } = this.props;
+    if (mode === 'PlayerVsCpu') {
+      return (
+        <Switch
+          style={{
+            margin: '0 0 5px 5px',
+          }}
+          checkedChildren="White"
+          unCheckedChildren="Black"
+          defaultChecked={this.state.whitePiece}
+        />
+      );
+    }
+  };
+
   render() {
-    const { board: { chess, mode, loading } } = this.props;
+    const { board: { chess, mode } } = this.props;
 
     let count = 0;
     let white = [];
@@ -109,29 +204,9 @@ class App extends Component {
           <Col xs={24} md={10}>
             {chess ? (
               <Card className="card-chess" style={{ width: 530 }}>
-                <Button
-                  disabled={mode === 'CpuVsCpu'}
-                  type="primary"
-                  onClick={this.startGameCpuVSCpu}
-                >
-                  Computer vs Computer
-                </Button>
-                {chess.turn() === 'b' ? (
-                  <Tag className="chess-right" color="#595959">
-                    Black Turn &nbsp;
-                    {loading ? (
-                      <Icon style={{ fontSize: 12 }} type="loading" />
-                    ) : null}
-                  </Tag>
-                ) : (
-                  <Tag className="chess-right" color="blue">
-                    White Turn &nbsp;
-                    {loading ? (
-                      <Icon style={{ fontSize: 12 }} type="loading" />
-                    ) : null}
-                  </Tag>
-                )}
-
+                {this.renderButtons()}
+                {this.renderOptions()}
+                {this.renderTurnTag()}
                 <Board chess={chess} />
               </Card>
             ) : null}

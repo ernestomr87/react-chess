@@ -21,4 +21,8 @@
   float: right;
 }
 
-
+.ant-btn-primary {
+  color: #fff;
+  background-color: #595959;
+  border-color: #1890ff;
+}
