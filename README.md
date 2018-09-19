@@ -16,4 +16,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Todo
 
-* Fetch ApiNews
+* [React Chess Example](https://react-chess-example.herokuapp.com). (incomplete!!)

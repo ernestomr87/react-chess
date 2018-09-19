@@ -19,7 +19,7 @@ function* startCpuVSCpuSaga(action) {
     let fen = '';
     const history = chess.history({ verbose: true });
     if (history.length) {
-      // let move = history[history.length - 1].from + history[history.length - 1].to;
+      let move = history[history.length - 1].from + history[history.length - 1].to;
       fen = chess.fen();
     }
     const { data } = yield call(game, fen, '');
