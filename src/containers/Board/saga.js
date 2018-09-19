@@ -16,11 +16,10 @@ function* startSaga() {
 function* startCpuVSCpuSaga(action) {
   try {
     let chess = action.payload.chess;
-    let move = '';
     let fen = '';
     const history = chess.history({ verbose: true });
     if (history.length) {
-      move = history[history.length - 1].from + history[history.length - 1].to;
+      // let move = history[history.length - 1].from + history[history.length - 1].to;
       fen = chess.fen();
     }
     const { data } = yield call(game, fen, '');
